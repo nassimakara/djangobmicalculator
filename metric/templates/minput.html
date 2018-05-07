@@ -1,0 +1,38 @@
+{% extends 'basemainpage.html' %}
+
+{% block body %}
+
+            <div class="container">
+                <h3 align="center">BMI Calculator</h3>
+
+                <p> The BMI (Body Mass Index)measurement is the calculation of your body weight in relation
+                    to your height and is commonly used as an indicator of whether you might be in a risk category
+                    for health problems caused by your weight. </p>
+
+                <form class=" site-form" action="/metric/moutput/" method="post">
+
+                <div align="center">
+
+                    <h4 align="center"><b>Metrics</b></h4><br>
+                    <p> Enter your height in m and your weight in kg</p><br>
+
+
+                                {% csrf_token %}
+                                    {{form}}
+
+                    <br><br>
+                        <input type="submit" class="btn btn-success" value="Calculate BMI Metrics">
+
+
+
+                    </form>
+
+                </div><br>
+
+
+            </div>
+
+
+
+
+{% endblock %}

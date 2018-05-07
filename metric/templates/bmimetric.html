@@ -1,0 +1,31 @@
+{% extends 'basemainpage.html' %}
+
+{% block body %}
+
+<div align="center">
+
+    <form class="site-form" action="/metric/bmimetric/" method="post" xmlns="http://www.w3.org/1999/html">
+
+
+        <h3 align="center">BMI Metric Formula</h3><br>
+
+                        {% csrf_token %}
+                        {{form}}
+
+        <div class="container">
+            <p align ="justify"><b> Definition</b></p>
+
+            <p align ="justify"><b> Body Mass Index Formula Metric</b></p>
+
+
+            <p align ="justify"><b> BMI Table for Adults</b></p>
+
+            <p align="justify"> Source : http://www.calculator.net/bmi-calculator.html</p>
+
+             <a href="{% url 'metric:minput' %}"><button type="button" class="btn btn-success">Back to Calculator</button></a>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

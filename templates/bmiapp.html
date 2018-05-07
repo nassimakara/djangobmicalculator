@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <form class="site-form" action="/bmiapp/welcome/" method="post">
+        {% csrf_token %}
+        {{form}}
+    </form>
+
+{% endblock %}

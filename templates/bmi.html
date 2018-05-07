@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  <form class="site-form" action="/bmi/bmi/" method="post" xmlns="http://www.w3.org/1999/html">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+
+      <div class = "container">
+
+        <p align ="justify"> A BMI Calculator is</p>
+
+
+        </div>
+
+    </form>
+
+{% endblock %}

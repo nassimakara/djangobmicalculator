@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <form class="site-form" action="/bmi/aboutus/" method="post" xmlns="http://www.w3.org/1999/html">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class = "container">
+
+        <p align ="justify"> This project has been developed for a Diploma in Python Programming at the CCT college
+         in Dublin. The project consists in building a BMI calculator. The web framework used is Django that is an
+          open-source web framework written in Python</p>
+
+
+        </div>
+
+    </form>
+
+{% endblock %}
