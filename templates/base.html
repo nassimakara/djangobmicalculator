@@ -13,7 +13,7 @@
                 {% block head %}
         <title>base</title>
                 {% endblock %}
-
+{% url 'aboutus' %}
     </head>
 
     <body>
@@ -25,7 +25,7 @@
     </div>
     <ul class="nav navbar-nav">
         <li><a href="{% url 'welcome' %}">Home</a></li>
-        <li><a href="{% url 'bmi' %}">What is BMI App</a></li>
+        <li><a href="{% url 'bmi' %}">What is a BMI App?</a></li>
         <li><a href="{% url 'aboutus' %}">About Us</a></li>
 
     </ul>

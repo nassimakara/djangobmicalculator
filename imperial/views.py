@@ -5,7 +5,7 @@ from .import forms
 
 def impinput(request):
     if request.method == 'POST':
-        form = forms.Imperial(request.POST)
+        form = forms.Impcalc(request.POST)
         if form.is_valid():
             record = form.save(commit=False)
             record.patient = request.user
@@ -13,13 +13,13 @@ def impinput(request):
             return redirect('imperial:impoutput')
 
     else:
-        form = forms.Imperial()
+        form = forms.Impcalc()
         return render(request, 'impinput.html', {'form': form})
 
 
 def impoutput(request):
-    metricdisplay = Imperial.objects.all()
-    return render(request, 'impoutput.html', {'metric': metricdisplay})
+    imperialdisplay = Imperial.objects.all()
+    return render(request, 'impoutput.html', {'imperial': imperialdisplay})
 
 
 def bmiimperial(request):

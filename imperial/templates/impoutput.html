@@ -7,42 +7,59 @@
     <form class="site-form" action="/imperial/impoutput/" method="post" xmlns="http://www.w3.org/1999/html">
 
 
-        <h3 align="center">BMI Metric Calculator</h3><br>
+        <h3 align="center">BMI Imperial Calculator</h3><br>
 
-            <div class = "metric">
+            <div class = "imperial">
                         {% csrf_token %}
-                    {% for Metric in metric %}
+                    {% for Imperial in imperial %}
 
-                    <p>{{Metric.date}}</p>
+                    <p>{{Imperial.date}}</p>
 
                 <table border="4", width="500">
                     <tr>
                         <th>Your Measurements</th>
-                        <th>Metrics</th>
                         <th>Imperial</th>
+                        <th>Metrics</th>
 
                     </tr>
 
                     <tr>
 
                         <td>Height </td>
-                        <td align="center">{{Metric.height}} m</td>
-                        <td align="center">{{Metric.mtofeet}} feet   {{Metric.mtoinch |floatformat:0}} inches</td>
+                        <td align="center">{{Imperial.heightfeet |floatformat:2}} feet {{Imperial.heightinches |floatformat:2}} inches </td><br>
+                        <td align="center">{{Imperial.heighttometres |floatformat:2}} meters</td>
+
 
                     </tr>
 
                     <tr>
                          <td>Weight </td>
-                        <td align="center">{{Metric.weight}} kg</td>
-                        <td align="center">{{Metric.kgtoimperial}} pounds</td>
+                        <td align="center">{{Imperial.weightstones |floatformat:2}} stones {{Imperial.weightpounds |floatformat:2}} pounds</td>
+                        <td align="center">{{Imperial.imperialtokg |floatformat:2}} kg</td>
 
                     </tr>
                 </table><br>
 
 
-                <h4 align = "center">Your metric BMI is {{Metric.bmimetrics}}</h4><br>
+                <h4 align = "center">Your imperial BMI is {{Imperial.bmiimperial}}</h4>
+
+                {% if Imperial.bmiimperial < 18.5 %}
+                <h4 align = "center"> You are Underweight </h4>
+                {% elif Imperial.bmiimperial >= 18.5 and Imperial.bmiimperial <= 24.9 %}
+                <h4 align = "center"> You are Healthy </h4>
+                {% elif Imperial.bmiimperial > 25%}
+                <h4 align = "center"> You are Overweight </h4>
+                {% elif Imperial.bmiimperial > 30 %}
+                <h4 align = "center"> You are Obese </h4>
+                {% else %}
+                <h4 align = "center"> Recalculate your BMI </h4>
+
+                {% endif %}
+
+
 
                         {% endfor %}
+                <br>
 
             <a href="{% url 'imperial:impinput' %}"><button type="button" class="btn btn-success">Back to Calculator</button></a>
 

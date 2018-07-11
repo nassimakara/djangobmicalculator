@@ -5,23 +5,23 @@ from .import forms
 
 def minput(request):
     if request.method == 'POST':
-        form = forms.Metric(request.POST)
+        form = forms.Mcalc(request.POST)
         if form.is_valid():
             record = form.save(commit=False)
             record.patient = request.user
             record.save()
-            return redirect('metric:metric')
+            return redirect('metric:moutput')
 
     else:
-        form = forms.Metric()
-        return render(request, 'minput.html', {'form': form})
+        form = forms.Mcalc()
+        return render(request, 'metric/minput.html', {'form': form})
 
 
 def moutput(request):
-    metricdisplay = Metric.objects.all()
-    return render(request, 'moutput.html', {'metric': metricdisplay})
-
+    metricdisplay = Metric.objects.all().order_by('patient')
+    return render(request, 'metric/moutput.html', {'metric': metricdisplay})
 
 def bmimetric(request):
+    return render(request, 'metric/bmimetric.html')
 
-    return render(request, 'bmimetric.html')
+

@@ -14,6 +14,7 @@
                     {% for Metric in metric %}
 
                     <p>{{Metric.date}}</p>
+                    <p>{{Metric.patient}}</p>
 
                 <table border="4", width="500">
                     <tr>
@@ -34,7 +35,9 @@
                     <tr>
                          <td>Weight </td>
                         <td align="center">{{Metric.weight}} kg</td>
-                        <td align="center">{{Metric.kgtoimperial}} pounds</td>
+                        <td align="center">{{Metric.kgtostones|floatformat:2}} stones {{Metric.kgtolbs|floatformat:2}} lbs <br>
+                        {{Metric.kgtopounds|floatformat:2}} lbs</td>
+
 
                     </tr>
                 </table><br>
@@ -42,7 +45,20 @@
 
                 <h4 align = "center">Your metric BMI is {{Metric.bmimetrics}}</h4><br>
 
-                        {% endfor %}
+                {% if Metric.bmimetrics < 18.5 %}
+                <h4 align = "center"> You are Underweight </h4>
+                {% elif Metric.bmimetrics >= 18.5 and Imperial.bmiimperial <= 24.9 %}
+                <h4 align = "center"> You are Healthy </h4>
+                {% elif Metric.bmimetrics > 25%}
+                <h4 align = "center"> You are Overweight </h4>
+                {% elif Metric.bmimetrics > 30 %}
+                <h4 align = "center"> You are Obese </h4>
+                {% else %}
+                <h4 align = "center"> Recalculate your BMI </h4>
+
+                {% endif %}
+
+                {% endfor %}
 
             <a href="{% url 'metric:minput' %}"><button type="button" class="btn btn-success">Back to Calculator</button></a>
 

@@ -2,7 +2,7 @@ from django import forms
 from .import models
 
 
-class Imperial(forms.ModelForm):
+class Impcalc(forms.ModelForm):
     class Meta:
         model = models.Imperial
-        fields = ['heightfeet', 'heightinches', 'weightpounds']
+        fields = ['heightfeet','heightinches','weightstones','weightpounds']
